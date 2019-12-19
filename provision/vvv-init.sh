@@ -10,6 +10,7 @@ DOMAIN=$(get_primary_host "${VVV_SITE_NAME}".test)
 SITE_TITLE=$(get_config_value 'site_title' "${DOMAIN}")
 WP_VERSION=$(get_config_value 'wp_version' 'latest')
 WP_LOCALE=$(get_config_value 'locale' 'en_US')
+PMC_SITE=$(get_config_value 'pmc_site' 'vip')
 WP_TYPE=$(get_config_value 'wp_type' "single")
 DB_NAME=$(get_config_value 'db_name' "${VVV_SITE_NAME}")
 DB_NAME=${DB_NAME//[\\\/\.\<\>\:\"\'\|\?\!\*]/}
@@ -181,5 +182,15 @@ if [ ! -z "${WP_THEMES}" ]; then
       noroot wp theme install "${theme}"
     done
 fi
+
+echo " * Add environment variables to bash profile"
+
+if [ "${PMC_SITE}" = "vip" ]; then
+  echo "export PMC_PHPUNIT_BOOTSTRAP=${VVV_PATH_TO_SITE}/public_html/wp-content/themes/vip/pmc-plugins/pmc-unit-test/bootstrap.php"
+elif [ "${PMC_SITE}" = "vipgo" ]; then
+  echo "export PMC_PHPUNIT_BOOTSTRAP=${VVV_PATH_TO_SITE}/public_html/wp-content/plugins/pmc-plugins/pmc-unit-test/bootstrap.php"
+fi
+
+source ~/.bash_profile
 
 echo " * Site Template provisioner script completed for ${VVV_SITE_NAME}"
