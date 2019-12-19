@@ -191,6 +191,6 @@ elif [ "${PMC_SITE}" = "vipgo" ]; then
   echo "export PMC_PHPUNIT_BOOTSTRAP=${VVV_PATH_TO_SITE}/public_html/wp-content/plugins/pmc-plugins/pmc-unit-test/bootstrap.php"
 fi
 
-source ~/.bash_profile
+source /home/vagrant/.bash_profile
 
 echo " * Site Template provisioner script completed for ${VVV_SITE_NAME}"
