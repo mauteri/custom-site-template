@@ -183,11 +183,15 @@ if [ ! -z "${WP_THEMES}" ]; then
     done
 fi
 
-echo " * Add environment variables to bash profile"
 
 if [ "${PMC_SITE}" = "vip" ]; then
+  echo " * Clone PMC-Plugins"
+  echo "git clone -b master git@bitbucket.org:penskemediacorp/pmc-plugins.git ${VVV_PATH_TO_SITE}/public_html/wp-content/themes/vip 2>&1"
+
+  echo " * Add environment variables to bash profile"
   echo "export PMC_PHPUNIT_BOOTSTRAP=\"${VVV_PATH_TO_SITE}/public_html/wp-content/themes/vip/pmc-plugins/pmc-unit-test/bootstrap.php\"" >>/home/vagrant/.bash_profile
 elif [ "${PMC_SITE}" = "vipgo" ]; then
+  echo " * Add environment variables to bash profile"
   echo "export PMC_PHPUNIT_BOOTSTRAP=\"${VVV_PATH_TO_SITE}/public_html/wp-content/plugins/pmc-plugins/pmc-unit-test/bootstrap.php\"" >>/home/vagrant/.bash_profile
 fi
 
