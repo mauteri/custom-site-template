@@ -10,7 +10,7 @@ DOMAIN=$(get_primary_host "${VVV_SITE_NAME}".test)
 SITE_TITLE=$(get_config_value 'site_title' "${DOMAIN}")
 WP_VERSION=$(get_config_value 'wp_version' 'latest')
 WP_LOCALE=$(get_config_value 'locale' 'en_US')
-PMC_SITE=$(get_config_value 'pmc_site' 'vip')
+PMC_SITE=$(get_config_value 'pmc_site_type' 'vip')
 WP_TYPE=$(get_config_value 'wp_type' "single")
 DB_NAME=$(get_config_value 'db_name' "${VVV_SITE_NAME}")
 DB_NAME=${DB_NAME//[\\\/\.\<\>\:\"\'\|\?\!\*]/}
@@ -186,9 +186,6 @@ fi
 mkdir -p -- "${VVV_PATH_TO_SITE}/public_html/wp-content/themes/vip"
 
 if [ "${PMC_SITE}" = "vip" ]; then
-  echo " * Clone PMC-Plugins"
-  git clone -b master git@bitbucket.org:penskemediacorp/pmc-plugins.git ${VVV_PATH_TO_SITE}/public_html/wp-content/themes/vip 2>&1
-
   echo " * Add environment variables to bash profile"
   echo "export PMC_PHPUNIT_BOOTSTRAP=\"${VVV_PATH_TO_SITE}/public_html/wp-content/themes/vip/pmc-plugins/pmc-unit-test/bootstrap.php\"" >>/home/vagrant/.bash_profile
 elif [ "${PMC_SITE}" = "vipgo" ]; then
