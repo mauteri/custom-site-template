@@ -186,9 +186,9 @@ fi
 echo " * Add environment variables to bash profile"
 
 if [ "${PMC_SITE}" = "vip" ]; then
-  echo "export PMC_PHPUNIT_BOOTSTRAP=${VVV_PATH_TO_SITE}/public_html/wp-content/themes/vip/pmc-plugins/pmc-unit-test/bootstrap.php"
+  echo "export PMC_PHPUNIT_BOOTSTRAP=${VVV_PATH_TO_SITE}/public_html/wp-content/themes/vip/pmc-plugins/pmc-unit-test/bootstrap.php:$PATH" >>/home/vagrant/.bash_profile
 elif [ "${PMC_SITE}" = "vipgo" ]; then
-  echo "export PMC_PHPUNIT_BOOTSTRAP=${VVV_PATH_TO_SITE}/public_html/wp-content/plugins/pmc-plugins/pmc-unit-test/bootstrap.php"
+  echo "export PMC_PHPUNIT_BOOTSTRAP=${VVV_PATH_TO_SITE}/public_html/wp-content/plugins/pmc-plugins/pmc-unit-test/bootstrap.php$PATH" >>/home/vagrant/.bash_profile
 fi
 
 source /home/vagrant/.bash_profile
